@@ -18,7 +18,8 @@ DROP TABLE IF EXISTS `lol_regions`;
 CREATE TABLE lol_regions ( 
 	region_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(225) NOT NULL,
-	PRIMARY KEY (region_id)
+	PRIMARY KEY (region_id),
+	CONSTRAINT `region_name` UNIQUE (name)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * 
@@ -31,6 +32,7 @@ CREATE TABLE lol_factions (
 	region_id INT UNSIGNED,
 	PRIMARY KEY(faction_id),
 	CONSTRAINT `is_static` FOREIGN KEY (region_id) REFERENCES lol_regions(region_id)
+	CONSTRAINT `faction_name` UNIQUE (name),
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * 
@@ -47,7 +49,8 @@ CREATE TABLE lol_champions (
 	releaseDate DATE NOT NULL,
 	PRIMARY KEY(champion_id),
 	CONSTRAINT `has_city` FOREIGN KEY (birth_faction_id) REFERENCES lol_factions(faction_id),
-	CONSTRAINT `has_region` FOREIGN KEY (birth_region_id) REFERENCES lol_regions(region_id)
+	CONSTRAINT `has_region` FOREIGN KEY (birth_region_id) REFERENCES lol_regions(region_id),
+	CONSTRAINT `champion_name` UNIQUE (name)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * 
@@ -56,7 +59,8 @@ CREATE TABLE lol_champions (
 CREATE TABLE lol_occupations (
 	occupation_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	title VARCHAR(225) NOT NULL,
-	PRIMARY KEY (occupation_id)
+	PRIMARY KEY (occupation_id), 
+	CONSTRAINT `occupation_title` UNIQUE (title)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * * * * 
