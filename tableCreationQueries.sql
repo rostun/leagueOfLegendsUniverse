@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS `lol_championRelationships`;
 DROP TABLE IF EXISTS `lol_championFactions`;
 DROP TABLE IF EXISTS `lol_championOccupations`;
 DROP TABLE IF EXISTS `lol_occupations`;
+DROP TABLE IF EXISTS `lol_races`;
+DROP TABLE IF EXISTS `lol_aliases`;
 DROP TABLE IF EXISTS `lol_champions`;
 DROP TABLE IF EXISTS `lol_factions`;
 DROP TABLE IF EXISTS `lol_regions`;
@@ -41,9 +43,8 @@ CREATE TABLE lol_factions (
 CREATE TABLE lol_champions (
 	champion_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(50) NOT NULL,
-	alias text NOT NULL,
 	gender ENUM('M', 'F') NOT NULL,
-	race VARCHAR(50) NOT NULL,
+	race_id REFERENCES lol_races(race_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	birth_faction_id INT UNSIGNED, 
 	birth_region_id INT UNSIGNED,
 	releaseDate DATE NOT NULL,
@@ -51,6 +52,25 @@ CREATE TABLE lol_champions (
 	CONSTRAINT `has_city` FOREIGN KEY (birth_faction_id) REFERENCES lol_factions(faction_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	CONSTRAINT `has_region` FOREIGN KEY (birth_region_id) REFERENCES lol_regions(region_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	CONSTRAINT `champion_name` UNIQUE (name)
+)ENGINE = InnoDB;
+
+/* * * * * * * * * * * * * * * * * * * * 
+ Champions Alias(es)
+ * * * * * * * * * * * * * * * * * * * */
+CREATE TABLE lol_aliases (
+	alias_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	champion_id INT NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	alias text NOT NULL,
+	PRIMARY KEY(alias_id)
+)ENGINE = InnoDB;
+
+/* * * * * * * * * * * * * * * * * * * * 
+ Races
+ * * * * * * * * * * * * * * * * * * * */
+CREATE TABLE lol_races (
+	race_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL,
+	PRIMARY KEY(race_id)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * 
@@ -111,7 +131,14 @@ INSERT INTO lol_factions(name, region_id) VALUES
 ("Noxus", NULL), ("Piltover", NULL), ("Shadow Isles", NULL), ("Shurima", 11), ("Zaun", NULL), ("Independent", NULL); 
 
 INSERT INTO lol_champions(name, alias, gender, race, birth_faction_id, birth_region_id, releaseDate) VALUES 
-(Aatrox, "The Darkin Blade", "M", "Darkin", NULL, NULL, "2013-06-13"), ();
+(Aatrox, "The Darkin Blade", "M", (SELECT race_id FROM lol_races WHERE name = "Darkin"), NULL, NULL, "2013-06-13"), 
+(Ahri, "The Nine Tailed Fox", "M", "Darkin", NULL, NULL, "2013-06-13"),
+
+INSERT INTO lol_aliases(champion_id, alias) VALUES
+((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), "The Darkin Blade"), ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"), "The Nine Tailed Fox"), 
+
+INSERT INTO lol_races(name) VALUES
+("Darkin"), 
 
 INSERT INTO lol_occupations(title) VALUES
 ("Avatar of War"), 
