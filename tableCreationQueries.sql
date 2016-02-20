@@ -129,14 +129,17 @@ CREATE TABLE lol_championRelationships (
 
 -- insert the following into the client table:
 INSERT INTO lol_regions(name) VALUES
-("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), ("Shurima Desert"), ("The Great Barrier"), ("Voodoo Lands"), ("Conqueror's Sea"), ("Guardian's Sea"), ("The Glad"), ("The Void"), ("Sablestone Mountain Range"), ("Ruddynip Valley");
+("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), 
+("Shurima Desert"), ("The Great Barrier"), ("Voodoo Lands"), ("Conqueror's Sea"), ("Guardian's Sea"), ("The Glad"), ("The Void"), ("Sablestone Mountain Range"), ("Ruddynip Valley");
 
 INSERT INTO lol_factions(name, region_id) VALUES
-("Bandle City", (SELECT region_id FROM lol_regions WHERE name = "Ruddynip Valley")), ("Bilgewater", (SELECT region_id FROM lol_regions WHERE name = "Blue Flame Islands")), ("Demacia", NULL), ("Freljord", NULL), ("Ionia", NULL), ("Mount Targon", (SELECT region_id FROM lol_regions WHERE name = "Mount Targon")), ("Noxus", NULL), ("Piltover", NULL), ("Shadow Isles", NULL), ("Shurima", (SELECT region_id FROM lol_regions WHERE name = "Shurima Desert")), ("Zaun", NULL), ("Independent", NULL); 
+("Bandle City", (SELECT region_id FROM lol_regions WHERE name = "Ruddynip Valley")), ("Bilgewater", (SELECT region_id FROM lol_regions WHERE name = "Blue Flame Islands")), ("Demacia", NULL), ("Freljord", NULL), 
+("Ionia", NULL), ("Mount Targon", (SELECT region_id FROM lol_regions WHERE name = "Mount Targon")), ("Noxus", NULL), ("Piltover", NULL), ("Shadow Isles", NULL), ("Shurima", 
+(SELECT region_id FROM lol_regions WHERE name = "Shurima Desert")), ("Zaun", NULL), ("Independent", NULL); 
 
 INSERT INTO lol_champions(name, gender, race, birth_faction_id, birth_region_id, releaseDate) VALUES 
 (Aatrox, "M", (SELECT race_id FROM lol_races WHERE name = "Darkin"), NULL, NULL, "2013-06-13"), 
-(Ahri, "F", (SELECT race_id FROM lol_races WHERE name = "Gumiho"), NULL, NULL, "2011-12-14"), 
+(Ahri, "F", (SELECT race_id FROM lol_races WHERE name = "Gumiho"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2011-12-14"), 
 
 INSERT INTO lol_aliases(champion_id, alias) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), "The Darkin Blade"), ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"), "The Nine Tailed Fox"), 
@@ -145,10 +148,12 @@ INSERT INTO lol_races(name) VALUES
 ("Darkin"), ("Gumiho"), 
 
 INSERT INTO lol_occupations(title) VALUES
-("Avatar of War"), 
+("Avatar of War"), ("Huntres"), ("Popstar"), 
 
 INSERT INTO lol_championOccupations(champion_id, occupation_id) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"),(SELECT occupation_id FROM lol_occupations WHERE title = "Avatar of War")), 
+((SELECT champion_id FROM lol_champions WHERE name = "Ahri"),(SELECT occupation_id FROM lol_occupations WHERE title = "Huntress")),
+((SELECT champion_id FROM lol_champions WHERE name = "Ahri"),(SELECT occupation_id FROM lol_occupations WHERE title = "Popstar")),
 
 INSERT INTO lol_championFactions(champion_id, faction_id) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"),(SELECT faction_id FROM lol_factions WHERE name = "Independent")),
@@ -156,7 +161,7 @@ INSERT INTO lol_championFactions(champion_id, faction_id) VALUES
 INSERT INTO lol_championRelationships(champion_id1, champion_id2, related, relation, romatic, relationship, ally, rival) VALUES /*true 1*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tahm Kench"), 0, NULL, 0, NULL, 1, 0), /*FRIENDS*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tryndamere"), 0, NULL, 0, NULL, 0, 1), /*RIVALS*/
-
+((SELECT champion_id FROM lol_champions WHERE name = "Ahri"), (SELECT champion_id FROM lol_champions WHERE name = "Wukong"), 0, NULL, 0, NULL, 1, 0), /*ALLIES*/
 
 
 
