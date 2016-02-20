@@ -1,7 +1,8 @@
-/* * * * * * *
+/* * * * * * * * * * * *
   Rosa Tung
   2.17.16
- * * * * * * */
+  Table Creation Queries
+ * * * * * * * * * * * */
 
 DROP TABLE IF EXISTS `lol_championRelationships`;
 DROP TABLE IF EXISTS `lol_championFactions`;
