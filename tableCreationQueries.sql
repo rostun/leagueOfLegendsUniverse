@@ -8,9 +8,9 @@ DROP TABLE IF EXISTS `lol_championRelationships`;
 DROP TABLE IF EXISTS `lol_championFactions`;
 DROP TABLE IF EXISTS `lol_championOccupations`;
 DROP TABLE IF EXISTS `lol_occupations`;
-DROP TABLE IF EXISTS `lol_races`;
 DROP TABLE IF EXISTS `lol_aliases`;
 DROP TABLE IF EXISTS `lol_champions`;
+DROP TABLE IF EXISTS `lol_races`;
 DROP TABLE IF EXISTS `lol_factions`;
 DROP TABLE IF EXISTS `lol_regions`;
 
@@ -20,8 +20,8 @@ DROP TABLE IF EXISTS `lol_regions`;
 CREATE TABLE lol_regions ( 
 	region_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(225) NOT NULL,
-	PRIMARY KEY (region_id),
-	CONSTRAINT `region_name` UNIQUE (name)
+	CONSTRAINT `region_name` UNIQUE (name),
+	PRIMARY KEY (region_id)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * 
@@ -32,36 +32,9 @@ CREATE TABLE lol_factions (
 	faction_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(225) NOT NULL,
 	region_id INT UNSIGNED,
-	PRIMARY KEY(faction_id),
+	CONSTRAINT `faction_name` UNIQUE (name),
 	CONSTRAINT `is_static` FOREIGN KEY (region_id) REFERENCES lol_regions(region_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	CONSTRAINT `faction_name` UNIQUE (name)
-)ENGINE = InnoDB;
-
-/* * * * * * * * * * * * * * * * * * * * 
- Champions
- * * * * * * * * * * * * * * * * * * * */
-CREATE TABLE lol_champions (
-	champion_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	name VARCHAR(50) NOT NULL,
-	gender ENUM('M', 'F') NOT NULL,
-	race_id REFERENCES lol_races(race_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	birth_faction_id INT UNSIGNED, 
-	birth_region_id INT UNSIGNED,
-	releaseDate DATE NOT NULL,
-	PRIMARY KEY(champion_id),
-	CONSTRAINT `has_city` FOREIGN KEY (birth_faction_id) REFERENCES lol_factions(faction_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	CONSTRAINT `has_region` FOREIGN KEY (birth_region_id) REFERENCES lol_regions(region_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	CONSTRAINT `champion_name` UNIQUE (name)
-)ENGINE = InnoDB;
-
-/* * * * * * * * * * * * * * * * * * * * 
- Champions Alias(es)
- * * * * * * * * * * * * * * * * * * * */
-CREATE TABLE lol_aliases (
-	alias_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	champion_id INT NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	alias text NOT NULL,
-	PRIMARY KEY(alias_id)
+	PRIMARY KEY(faction_id)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * 
@@ -74,13 +47,42 @@ CREATE TABLE lol_races (
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * 
+ Champions
+ * * * * * * * * * * * * * * * * * * * */
+CREATE TABLE lol_champions (
+	champion_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL,
+	gender ENUM('M', 'F') NOT NULL,
+	race_id INT UNSIGNED,
+	birth_faction_id INT UNSIGNED, 
+	birth_region_id INT UNSIGNED,
+	releaseDate DATE NOT NULL,
+	CONSTRAINT `champion_name` UNIQUE (name),
+	FOREIGN KEY (race_id) REFERENCES lol_races(race_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	CONSTRAINT `has_city` FOREIGN KEY (birth_faction_id) REFERENCES lol_factions(faction_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	CONSTRAINT `has_region` FOREIGN KEY (birth_region_id) REFERENCES lol_regions(region_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	PRIMARY KEY(champion_id)
+)ENGINE = InnoDB;
+
+/* * * * * * * * * * * * * * * * * * * * 
+ Champions Alias(es)
+ * * * * * * * * * * * * * * * * * * * */
+CREATE TABLE lol_aliases (
+	alias_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	champion_id INT UNSIGNED NOT NULL,
+	alias text NOT NULL,
+	FOREIGN KEY (champion_id) REFERENCES lol_races(race_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	PRIMARY KEY(alias_id)
+)ENGINE = InnoDB;
+
+/* * * * * * * * * * * * * * * * * * * * 
  occupations 
  * * * * * * * * * * * * * * * * * * * */
 CREATE TABLE lol_occupations (
 	occupation_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	title VARCHAR(225) NOT NULL,
-	PRIMARY KEY (occupation_id), 
-	CONSTRAINT `occupation_title` UNIQUE (title)
+	CONSTRAINT `occupation_title` UNIQUE (title),
+	PRIMARY KEY (occupation_id)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * * * * 
@@ -88,8 +90,10 @@ CREATE TABLE lol_occupations (
 	[champion] -> [occupation] : many to many
  * * * * * * * * * * * * * * * * * * * * * * */
 CREATE TABLE lol_championOccupations (
-	champion_id INT UNSIGNED NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	occupation_id INT UNSIGNED NOT NULL REFERENCES lol_occupations(occupation_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	champion_id INT UNSIGNED NOT NULL, 
+	occupation_id INT UNSIGNED NOT NULL, 
+	FOREIGN KEY (champion_id) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY (occupation_id) REFERENCES lol_occupations(occupation_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	PRIMARY KEY (champion_id, occupation_id)
 )ENGINE = InnoDB;
 
@@ -98,8 +102,10 @@ CREATE TABLE lol_championOccupations (
 	[champion] -> [faction] : many to many
  * * * * * * * * * * * * * * * * * * * * * * */
 CREATE TABLE lol_championFactions (
-	champion_id INT UNSIGNED NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	faction_id INT UNSIGNED NOT NULL REFERENCES lol_factions(faction_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	champion_id INT UNSIGNED NOT NULL,
+	faction_id INT UNSIGNED NOT NULL,
+	FOREIGN KEY (champion_id) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY (faction_id) REFERENCES lol_factions(faction_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	PRIMARY KEY (champion_id, faction_id)
 )ENGINE = InnoDB;
 
@@ -108,14 +114,16 @@ CREATE TABLE lol_championFactions (
 	[champion] -> [champion] : many to many
  * * * * * * * * * * * * * * * * * * * * * */
 CREATE TABLE lol_championRelationships (
-	champion_id1 INT NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	champion_id2 INT NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	champion_id1 INT UNSIGNED NOT NULL,
+	champion_id2 INT UNSIGNED NOT NULL,
 	related BIT NOT NULL,
 	relation text DEFAULT NULL, 
 	romantic BIT NOT NULL,
 	relationship text DEFAULT NULL, 
 	ally BIT NOT NULL,
 	rival BIT NOT NULL,
+	FOREIGN KEY (champion_id1) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY (champion_id2) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	PRIMARY KEY (champion_id1, champion_id2)
 )ENGINE = InnoDB;
 
