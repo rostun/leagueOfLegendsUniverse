@@ -90,12 +90,12 @@ CREATE TABLE lol_championFactions (
 CREATE TABLE lol_championRelationships (
 	champion_id1 INT NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	champion_id2 INT NOT NULL REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	related BIT DEFAULT NULL,
-	relation text, 
-	romantic BIT DEFAULT NULL,
-	relationship text, 
-	ally BIT DEFAULT NULL,
-	rival BIT DEFAULT NULL,
+	related BIT NOT NULL,
+	relation text DEFAULT NULL, 
+	romantic BIT NOT NULL,
+	relationship text DEFAULT NULL, 
+	ally BIT NOT NULL,
+	rival BIT NOT NULL,
 	PRIMARY KEY (champion_id1, champion_id2)
 )ENGINE = InnoDB;
 
@@ -123,8 +123,8 @@ INSERT INTO lol_championFactions(champion_id, faction_id) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"),(SELECT faction_id FROM lol_factions WHERE name = "Independent")),
 
 INSERT INTO lol_championRelationships(champion_id1, champion_id2, related, relation, romatic, relationship, ally, rival) VALUES /*true 1*/
-((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), /*FRIENDS TAHM KENCH*/
-((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), /*RIVALS TRYNDAMERE*/
+((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tahm Kench"), 0, NULL, 0, NULL, 1, 0), /*FRIENDS*/
+((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tryndamere"), 0, NULL, 0, NULL, 0, 1), /*RIVALS*/
 
 
 
