@@ -129,24 +129,20 @@ CREATE TABLE lol_championRelationships (
 
 -- insert the following into the client table:
 INSERT INTO lol_regions(name) VALUES
-("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), 
-("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), ("Shurima Desert"), ("The Great Barrier"), 
-("Voodoo Lands"), ("Conqueror's Sea"), ("Guardian's Sea"), ("The Glad"), ("The Void"), ("Sablestone Mountain Range"),
-("Ruddynip Valley");
+("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), ("Shurima Desert"), ("The Great Barrier"), ("Voodoo Lands"), ("Conqueror's Sea"), ("Guardian's Sea"), ("The Glad"), ("The Void"), ("Sablestone Mountain Range"), ("Ruddynip Valley");
 
 INSERT INTO lol_factions(name, region_id) VALUES
-("Bandle City", 19), ("Bilgewater", 1), ("Demacia", NULL), ("Freljord", NULL), ("Ionia", NULL), ("Mount Targon", 8),
-("Noxus", NULL), ("Piltover", NULL), ("Shadow Isles", NULL), ("Shurima", 11), ("Zaun", NULL), ("Independent", NULL); 
+("Bandle City", (SELECT region_id FROM lol_regions WHERE name = "Ruddynip Valley")), ("Bilgewater", (SELECT region_id FROM lol_regions WHERE name = "Blue Flame Islands")), ("Demacia", NULL), ("Freljord", NULL), ("Ionia", NULL), ("Mount Targon", (SELECT region_id FROM lol_regions WHERE name = "Mount Targon")), ("Noxus", NULL), ("Piltover", NULL), ("Shadow Isles", NULL), ("Shurima", (SELECT region_id FROM lol_regions WHERE name = "Shurima Desert")), ("Zaun", NULL), ("Independent", NULL); 
 
-INSERT INTO lol_champions(name, alias, gender, race, birth_faction_id, birth_region_id, releaseDate) VALUES 
-(Aatrox, "The Darkin Blade", "M", (SELECT race_id FROM lol_races WHERE name = "Darkin"), NULL, NULL, "2013-06-13"), 
-(Ahri, "The Nine Tailed Fox", "M", "Darkin", NULL, NULL, "2013-06-13"),
+INSERT INTO lol_champions(name, gender, race, birth_faction_id, birth_region_id, releaseDate) VALUES 
+(Aatrox, "M", (SELECT race_id FROM lol_races WHERE name = "Darkin"), NULL, NULL, "2013-06-13"), 
+(Ahri, "F", (SELECT race_id FROM lol_races WHERE name = "Gumiho"), NULL, NULL, "2011-12-14"), 
 
 INSERT INTO lol_aliases(champion_id, alias) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), "The Darkin Blade"), ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"), "The Nine Tailed Fox"), 
 
 INSERT INTO lol_races(name) VALUES
-("Darkin"), 
+("Darkin"), ("Gumiho"), 
 
 INSERT INTO lol_occupations(title) VALUES
 ("Avatar of War"), 
