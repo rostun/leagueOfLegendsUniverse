@@ -208,8 +208,9 @@ INSERT INTO lol_championRelationships(champion_id, champion_id2, related, romant
 ((SELECT champion_id FROM lol_champions WHERE name = "Master Yi"), (SELECT champion_id FROM lol_champions WHERE name = "Singed"), "N", "N", "N", "Y"), /*ENEMIES*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Sona"), "N", "N", "N", "Y"), /*RIVALS*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Master Yi"), "N", "N", "N", "Y"), /*RIVALS*/
-((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Zed"), "N", "N", "N", "Y"); /*ENEMIES*/
+((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Zed"), "N", "N", "N", "Y"), /*ENEMIES*/
 
+((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Singed"), "Y", "N", "N", "Y"); /*ENEMIES*/
 
 
 

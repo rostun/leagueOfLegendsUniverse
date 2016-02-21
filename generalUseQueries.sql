@@ -111,33 +111,41 @@ OR A.name != "Kennen" AND C.name = "Kennen" AND D.name = A.name;
  Display Champions in Romantic Relationships
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-SELECT 	A.name AS "Champion",
-		C.name AS "Champion",
-		B.related,
-		B.romantic,
-		B.ally,
-		B.rival
+SELECT CONCAT(A.name, " and ", C.name) AS 'Champion Couples'
 FROM lol_champions A
 INNER JOIN lol_championRelationships B ON A.champion_id = B.champion_id
 INNER JOIN lol_champions C ON B.champion_id2 = C.champion_id
-WHERE A.name = "Kennen" OR C.name = "Kennen";
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- Display Champions who are related
- order by: alphabetical order
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+WHERE B.romantic = "Y";
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Display Champions who are allies
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+SELECT CONCAT(A.name, " and ", C.name) AS 'Champion Allies'
+FROM lol_champions A
+INNER JOIN lol_championRelationships B ON A.champion_id = B.champion_id
+INNER JOIN lol_champions C ON B.champion_id2 = C.champion_id
+WHERE B.ally = "Y";
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Display Champions who are enemies
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+SELECT CONCAT(A.name, " and ", C.name) AS 'Champion Enemies'
+FROM lol_champions A
+INNER JOIN lol_championRelationships B ON A.champion_id = B.champion_id
+INNER JOIN lol_champions C ON B.champion_id2 = C.champion_id
+WHERE B.rival = "Y";
 
-
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ Display Champions who are related but are enemies
+ order by: alphabetical order
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+SELECT CONCAT(A.name, " and ", C.name) AS 'Champions that are Related but Hate Each Other'
+FROM lol_champions A
+INNER JOIN lol_championRelationships B ON A.champion_id = B.champion_id
+INNER JOIN lol_champions C ON B.champion_id2 = C.champion_id
+WHERE B.related = "Y" AND B.rival = "Y";
  
 
 
