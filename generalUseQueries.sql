@@ -18,6 +18,7 @@ SELECT * FROM lol_champions;
 SELECT * FROM lol_factions;
 SELECT * FROM lol_regions;
 
+
 /* * * * * * * * * * * * * * * * * * * *
  Display Champions Names and Races
  order by: release date
@@ -38,7 +39,8 @@ SELECT 	lol_races.name AS "Race",
 		COUNT(lol_champions.race_id) AS "Number of Champions"
 FROM lol_races 
 INNER JOIN lol_champions ON lol_champions.race_id = lol_races.race_id
-GROUP BY lol_races.name;
+GROUP BY lol_races.name
+ORDER BY lol_races.name ASC;
  
 /* * * * * * * * * * * * * * * * * * * *
  Champions with [occupation]
@@ -48,6 +50,32 @@ GROUP BY lol_races.name;
  Champion Romantic Connections 
  * * * * * * * * * * * * * * * * * * * */
 
- /* * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * *
  Champion not loyal to starting faction
  * * * * * * * * * * * * * * * * * * * */
+ 
+/* * * * * * * * * * * * * * * * * * * *
+ Champion Details
+ minus allegiances and occupations 
+ order by alphabetical order
+ * * * * * * * * * * * * * * * * * * * */
+SELECT 	lol_champions.name AS "Champion",
+		lol_champions.gender AS "Gender",
+		lol_races.name AS "Race",
+		CONCAT(IFNULL(lol_factions.name, "n/a"), ", ", IFNULL(lol_regions.name, "n/a")) AS 'Origin (Nation/Faction, Region)',
+		lol_champions.releaseDate AS "Release Date"
+FROM lol_champions
+LEFT JOIN lol_races ON lol_champions.race_id = lol_races.race_id
+LEFT JOIN lol_factions ON lol_champions.birth_faction_id = lol_factions.faction_id
+lEFT JOIN lol_regions ON lol_champions.birth_region_id = lol_regions.region_id
+ORDER BY lol_champions.name ASC;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
