@@ -68,6 +68,11 @@ LEFT JOIN lol_races ON lol_champions.race_id = lol_races.race_id
 ORDER BY releaseDate ASC;
 
 /* * * * * * * * * * * * * * * * * * * * * *
+ Display relationships of a Champion
+ order by: alphabetical order
+ * * * * * * * * * * * * * * * * * * * * * */
+ 
+/* * * * * * * * * * * * * * * * * * * * * *
  Display Champions in Romantic Relationships
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * */
@@ -86,6 +91,9 @@ ORDER BY releaseDate ASC;
  Display Champions who are enemies
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * */
+
+
+ 
 
 
  
