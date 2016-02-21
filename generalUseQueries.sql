@@ -36,9 +36,20 @@ lEFT JOIN lol_regions ON lol_champions.birth_region_id = lol_regions.region_id
 ORDER BY lol_champions.name ASC;
 
 /* * * * * * * * * * * * * * * * * * * *
+ Display Aliases of a Champion
+ order by: alphabetical order
+ * * * * * * * * * * * * * * * * * * * */
+ 
+/* * * * * * * * * * * * * * * * * * * *
  Display Allegiances + # Champions per
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * */
+SELECT 	lol_factions.name AS "Faction",
+		IFNULL(lol_championFactions.champion_id, "0") AS "Number of Champions"
+FROM lol_factions
+LEFT JOIN lol_championFactions ON lol_factions.faction_id = lol_championFactions.faction_id
+GROUP BY lol_factions.name
+ORDER BY lol_factions.name ASC;
 
 /* * * * * * * * * * * * * * * * * * * *
  Display Occupations + # Champions per
