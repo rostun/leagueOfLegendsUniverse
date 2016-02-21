@@ -69,7 +69,6 @@ WHERE lol_occupations.title
 LIKE "%Kinkou%" /*occupation or any text*/
 ORDER BY lol_champions.name ASC;
  
- 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Display Races + # Champions per 
  order by: alphabetical order
@@ -96,12 +95,33 @@ ORDER BY releaseDate ASC;
  Display relationships of a Champion
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
- 
+SELECT 	D.name AS "Relationships involving Kennen",
+		B.related,
+		B.romantic,
+		B.ally,
+		B.rival
+FROM lol_champions A
+INNER JOIN lol_championRelationships B ON A.champion_id = B.champion_id
+INNER JOIN lol_champions C ON B.champion_id2 = C.champion_id
+INNER JOIN lol_champions D
+WHERE A.name = "Kennen" AND C.name != "Kennen" AND D.name = C.name
+OR A.name != "Kennen" AND C.name = "Kennen" AND D.name = A.name;
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Display Champions in Romantic Relationships
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
- 
+SELECT 	A.name AS "Champion",
+		C.name AS "Champion",
+		B.related,
+		B.romantic,
+		B.ally,
+		B.rival
+FROM lol_champions A
+INNER JOIN lol_championRelationships B ON A.champion_id = B.champion_id
+INNER JOIN lol_champions C ON B.champion_id2 = C.champion_id
+WHERE A.name = "Kennen" OR C.name = "Kennen";
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Display Champions who are related
  order by: alphabetical order

@@ -114,16 +114,16 @@ CREATE TABLE lol_championFactions (
 	[champion] -> [champion] : many to many
  * * * * * * * * * * * * * * * * * * * * * */
 CREATE TABLE lol_championRelationships (
-	champion_id1 INT UNSIGNED NOT NULL,
+	champion_id INT UNSIGNED NOT NULL,
 	champion_id2 INT UNSIGNED NOT NULL,
 	related ENUM('Y', 'N') NOT NULL,
 	romantic ENUM('Y', 'N') NOT NULL, 
 	ally ENUM('Y', 'N') NOT NULL,
 	rival ENUM('Y', 'N') NOT NULL,
-	CONSTRAINT `two_way` UNIQUE (champion_id1, champion_id2),
-	FOREIGN KEY (champion_id1) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	CONSTRAINT `two_way` UNIQUE (champion_id, champion_id2),
+	FOREIGN KEY (champion_id) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY (champion_id2) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	PRIMARY KEY (champion_id1, champion_id2)
+	PRIMARY KEY (champion_id, champion_id2)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * * * 
@@ -192,7 +192,7 @@ INSERT INTO lol_championFactions(champion_id, faction_id) VALUES
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert champion relationships
  * * * * * * * * * * * * * * * * * * * * * */
-INSERT INTO lol_championRelationships(champion_id1, champion_id2, related, romantic, ally, rival) VALUES /*true 1*/
+INSERT INTO lol_championRelationships(champion_id, champion_id2, related, romantic, ally, rival) VALUES /*true 1*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tahm Kench"), "N", "N", "Y", "N"), /*FRIENDS*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tryndamere"), "N", "N", "N", "Y"), /*RIVALS*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"), (SELECT champion_id FROM lol_champions WHERE name = "Wukong"), "N", "N", "Y", "N"), /*ALLIES*/
