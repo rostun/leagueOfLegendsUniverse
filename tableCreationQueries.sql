@@ -128,6 +128,7 @@ CREATE TABLE lol_championRelationships (
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert regions
+ INSERT INTO lol_regions([name]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_regions(name) VALUES
 ("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), ("Shurima Desert"), 
@@ -135,6 +136,7 @@ INSERT INTO lol_regions(name) VALUES
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert factions
+ INSERT INTO lol_factions([name], [region_id]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_factions(name, region_id) VALUES
 ("Bandle City", (SELECT region_id FROM lol_regions WHERE name = "Ruddynip Valley")), ("Bilgewater", (SELECT region_id FROM lol_regions WHERE name = "Blue Flame Islands")), ("Demacia", NULL), ("Freljord", NULL), 
@@ -143,12 +145,14 @@ INSERT INTO lol_factions(name, region_id) VALUES
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert races
+ INSERT INTO lol_races([name]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_races(name) VALUES
 ("Darkin"), ("Gumiho"), ("Human"), ("Yordle"), ("Monkey");
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert champions
+ INSERT INTO lol_champions([name], [gender], [race_id], [birth_faction_id], [birth_region_id], [releaseDate]) VALUES 
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_champions(name, gender, race_id, birth_faction_id, birth_region_id, releaseDate) VALUES 
 ("Aatrox", "M", (SELECT race_id FROM lol_races WHERE name = "Darkin"), NULL, NULL, "2013-06-13"), ("Ahri", "F", (SELECT race_id FROM lol_races WHERE name = "Gumiho"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2011-12-14"), ("Akali", "F", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2010-06-11"), ("Kennen", "M", (SELECT race_id FROM lol_races WHERE name = "Yordle"), (SELECT faction_id FROM lol_factions WHERE name = "Bandle City"), (SELECT region_id FROM lol_regions WHERE name = "Ruddynip Valley"), "2010-04-08"), ("Shen", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2010-03-24"), ("Wukong", "M", (SELECT race_id FROM lol_races WHERE name = "Monkey"), NULL, (SELECT region_id FROM lol_regions WHERE name = "Plague Jungles"), "2011-07-26"), ("Master Yi", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2009-02-21"),
@@ -162,6 +166,7 @@ INSERT INTO lol_champions(name, gender, race_id, birth_faction_id, birth_region_
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert aliases
+ INSERT INTO lol_aliases([champion_id], [alias]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_aliases(champion_id, alias) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), "The Darkin Blade"), ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"), "The Nine Tailed Fox"), ((SELECT champion_id FROM lol_champions WHERE name = "Akali"), "The First of Shadow"), ((SELECT champion_id FROM lol_champions WHERE name = "Kennen"), "The Heart of the Tempest"), ((SELECT champion_id FROM lol_champions WHERE name = "Shen"), "Eye of Twilight"), ((SELECT champion_id FROM lol_champions WHERE name = "Wukong"), "The Monkey King"), ((SELECT champion_id FROM lol_champions WHERE name = "Wukong"), "Kong"), ((SELECT champion_id FROM lol_champions WHERE name = "Wukong"), "Pupil"), ((SELECT champion_id FROM lol_champions WHERE name = "Master Yi"), "The Wuku Bladesman"), 
@@ -171,12 +176,14 @@ INSERT INTO lol_aliases(champion_id, alias) VALUES
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert occupations
+ INSERT INTO lol_occupations([title]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_occupations(title) VALUES
 ("Avatar of War"), ("Huntress"), ("Popstar"), ("Member of the Kinkou"), ("Leader of the Kinkou"), ("Eye of Twilight"), ("Wuju Practitioner"), ("PROJECT member"), ("Artist"), ("Assassin"), ("Serial Killer");
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert champion occupations 
+ INSERT INTO lol_championOccupations([champion_id], [occupation_id]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_championOccupations(champion_id, occupation_id) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT occupation_id FROM lol_occupations WHERE title = "Avatar of War")), ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"),(SELECT occupation_id FROM lol_occupations WHERE title = "Huntress")), ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"),(SELECT occupation_id FROM lol_occupations WHERE title = "Popstar")), ((SELECT champion_id FROM lol_champions WHERE name = "Akali"),(SELECT occupation_id FROM lol_occupations WHERE title = "Member of the Kinkou")), ((SELECT champion_id FROM lol_champions WHERE name = "Kennen"),(SELECT occupation_id FROM lol_occupations WHERE title = "Member of the Kinkou")), ((SELECT champion_id FROM lol_champions WHERE name = "Shen"),(SELECT occupation_id FROM lol_occupations WHERE title = "Leader of the Kinkou")), ((SELECT champion_id FROM lol_champions WHERE name = "Shen"),(SELECT occupation_id FROM lol_occupations WHERE title = "Eye of Twilight")), ((SELECT champion_id FROM lol_champions WHERE name = "Wukong"),(SELECT occupation_id FROM lol_occupations WHERE title = "Wuju Practitioner")), ((SELECT champion_id FROM lol_champions WHERE name = "Master Yi"),(SELECT occupation_id FROM lol_occupations WHERE title = "Wuju Practitioner")), ((SELECT champion_id FROM lol_champions WHERE name = "Master Yi"),(SELECT occupation_id FROM lol_occupations WHERE title = "PROJECT member")), ((SELECT champion_id FROM lol_champions WHERE name = "Jhin"),(SELECT occupation_id FROM lol_occupations WHERE title = "Artist")), ((SELECT champion_id FROM lol_champions WHERE name = "Jhin"),(SELECT occupation_id FROM lol_occupations WHERE title = "Assassin")),
@@ -184,6 +191,7 @@ INSERT INTO lol_championOccupations(champion_id, occupation_id) VALUES
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert champion faction allegiances 
+ INSERT INTO lol_championFactions([champion_id], [faction_id]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_championFactions(champion_id, faction_id) VALUES
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"),(SELECT faction_id FROM lol_factions WHERE name = "Independent")), ((SELECT champion_id FROM lol_champions WHERE name = "Ahri"),(SELECT faction_id FROM lol_factions WHERE name = "Independent")), ((SELECT champion_id FROM lol_champions WHERE name = "Akali"),(SELECT faction_id FROM lol_factions WHERE name = "Ionia")), ((SELECT champion_id FROM lol_champions WHERE name = "Akali"),(SELECT faction_id FROM lol_factions WHERE name = "Kinkou Order")), ((SELECT champion_id FROM lol_champions WHERE name = "Kennen"),(SELECT faction_id FROM lol_factions WHERE name = "Kinkou Order")), ((SELECT champion_id FROM lol_champions WHERE name = "Kennen"),(SELECT faction_id FROM lol_factions WHERE name = "Ionia")), ((SELECT champion_id FROM lol_champions WHERE name = "Kennen"),(SELECT faction_id FROM lol_factions WHERE name = "Bandle City")), ((SELECT champion_id FROM lol_champions WHERE name = "Shen"),(SELECT faction_id FROM lol_factions WHERE name = "Ionia")), ((SELECT champion_id FROM lol_champions WHERE name = "Shen"),(SELECT faction_id FROM lol_factions WHERE name = "Kinkou Order")), ((SELECT champion_id FROM lol_champions WHERE name = "Wukong"),(SELECT faction_id FROM lol_factions WHERE name = "Ionia")), ((SELECT champion_id FROM lol_champions WHERE name = "Master Yi"),(SELECT faction_id FROM lol_factions WHERE name = "Ionia")),
@@ -191,6 +199,7 @@ INSERT INTO lol_championFactions(champion_id, faction_id) VALUES
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert champion relationships
+ INSERT INTO lol_championRelationships([champion_id], [champion_id2], [related], [romantic], [ally], [rival]) VALUES /*true 1*/
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_championRelationships(champion_id, champion_id2, related, romantic, ally, rival) VALUES /*true 1*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tahm Kench"), "N", "N", "Y", "N"), /*FRIENDS*/
