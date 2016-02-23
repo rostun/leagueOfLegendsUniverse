@@ -6,51 +6,25 @@
 */
 
 body {
-	background-color: Azure;
+    margin: 0 auto;
+    padding: 2em 2em 4em;
+    max-width: 800px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    color: #454497;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
-table, th, td {
-	border: 1px solid black;
-	table-layout: fixed;
-	padding: 2px;
+.topLabel{
+    color: #238487;
+    font-weight: bold;
+    font-size: 200%
 }
 
-table th:nth-child(1) {
-	font-weight: normal;
-	font-style: italic;
-}
-
-/*
-	extra credit: alternate row colors
-*/
-table tr:nth-child(even) {
-	background-color: Peachpuff;
-}
-
-table tr:nth-child(odd) {
-	background-color: PapayaWhip;
-}
-
-table thead th {
-	background-color: Azure;
-}
-
-table tfoot td {
-	background-color: Azure;
-}
-
-#body {
-	margin: 20px 0 0 0;
-	background-color: Pink;
-	width: 75%;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-#container {
-	background-color: lightblue;
-	width: 56.25%;
-	margin: 0 auto;
-	text-align: center;
-	padding: 1px;
+label {
+    color: #238487;
+    font-weight: bold;
+    font-size: 18px;
 }
