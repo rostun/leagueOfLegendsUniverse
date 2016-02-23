@@ -1,0 +1,56 @@
+/*
+	Rosa Tung
+	CS 340
+	Final Project
+	style.css
+*/
+
+body {
+	background-color: Azure;
+}
+
+table, th, td {
+	border: 1px solid black;
+	table-layout: fixed;
+	padding: 2px;
+}
+
+table th:nth-child(1) {
+	font-weight: normal;
+	font-style: italic;
+}
+
+/*
+	extra credit: alternate row colors
+*/
+table tr:nth-child(even) {
+	background-color: Peachpuff;
+}
+
+table tr:nth-child(odd) {
+	background-color: PapayaWhip;
+}
+
+table thead th {
+	background-color: Azure;
+}
+
+table tfoot td {
+	background-color: Azure;
+}
+
+#body {
+	margin: 20px 0 0 0;
+	background-color: Pink;
+	width: 75%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#container {
+	background-color: lightblue;
+	width: 56.25%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 1px;
+}
