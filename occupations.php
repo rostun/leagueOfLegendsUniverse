@@ -24,17 +24,17 @@
 	<body>
 		<legend class="topLabel"> Regions </legend> <br>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
-		<div> <!--GENERAL CHAMPION INFORMATION-->
+		<div> <!--OCCUPATIONS-->
 			<table>
 				<thead>
 					<tr>
-						<th> Regions in the Database </th>
+						<th> Occupations in the Database </th>
 					</tr>
 				</thead>
 				<?php				
-					if(!($stmt = $mysqli->prepare(	"SELECT	lol_regions.name
-													From lol_regions
-													WHERE lol_regions.name != ' '"
+					if(!($stmt = $mysqli->prepare(	"SELECT	lol_occupations.title
+													From lol_occupations
+													WHERE lol_occupations.title != ' '"
 													))){
 						echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 					}

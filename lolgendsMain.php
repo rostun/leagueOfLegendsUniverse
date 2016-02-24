@@ -22,7 +22,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<legend class="topLabel"> Explore the Lolgends Universe</legend> <br>
+		<legend class="topLabel"> Explore the Lolgends Lore Universe</legend> <br>
 		<div class="button"><a href="champions.php">See Champion List</a></div> <br> <!--go to general table-->
 		<div> <!--ADD CHAMPION-->
 			<form method="post" action="addChampion.php"> 
@@ -119,6 +119,39 @@
 							<p>Name: <input type="text" name="regionName" /></p>
 						</fieldset>
 						&nbsp <input type="submit" name="add" value="Add Region" />
+				</fieldset>
+			</form>
+		</div> <br>
+		<div class="button"><a href="factions.php">See Faction/Nation List</a></div> <br> <!--go to factions table-->
+		<div> <!--ADD FACTION-->
+			<form method="post" action="addFaction.php"> 
+				<fieldset> <legend>Add Faction/Nation </legend>
+						<fieldset>
+							<p>Name: <input type="text" name="factionName" /></p>
+						</fieldset>
+						&nbsp <input type="submit" name="add" value="Add Faction/Nation" />
+				</fieldset>
+			</form>
+		</div> <br>
+		<div class="button"><a href="races.php">See Race List</a></div> <br> <!--go to races table-->
+		<div> <!--ADD RACE-->
+			<form method="post" action="addRace.php"> 
+				<fieldset> <legend>Add Race </legend>
+						<fieldset>
+							<p>Name: <input type="text" name="raceName" /></p>
+						</fieldset>
+						&nbsp <input type="submit" name="add" value="Add Race" />
+				</fieldset>
+			</form>
+		</div> <br>
+		<div class="button"><a href="occupations.php">See Occupations List</a></div> <br> <!--go to races table-->
+		<div> <!--ADD OCCUPATION-->
+			<form method="post" action="addOccupation.php"> 
+				<fieldset> <legend>Add Occupation </legend>
+						<fieldset>
+							<p>Title: <input type="text" name="jobTitle" /></p>
+						</fieldset>
+						&nbsp <input type="submit" name="add" value="Add Occupation" />
 				</fieldset>
 			</form>
 		</div>

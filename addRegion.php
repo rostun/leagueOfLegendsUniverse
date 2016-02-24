@@ -27,23 +27,22 @@
 		if(!$stmt->execute()){
 			echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
 		} else {
-			echo "Added " . $stmt->affected_rows . " rows to lol_regions.";
+			echo "Added '" . $_POST['regionName'] . "' to the list of regions.";
 		}
 		//save region name
-		$regionName = $_POST['regionName']; //echo $champName;
+		//$regionName = $_POST['regionName']; //echo $champName;
 		?>
 		</div>
 		<div> <!--display champion just added-->
 			<table>
 				<thead>
 					<tr>
-						<th> Region Added </th>
+						<th> Regions in the Database </th>
 					</tr>
 				</thead>
 				<?php				
 					if(!($stmt = $mysqli->prepare(	"SELECT	lol_regions.name
-													FROM lol_regions
-													WHERE lol_regions.name = '$regionName'"
+													FROM lol_regions"
 													))){
 						echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 					}

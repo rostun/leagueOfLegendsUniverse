@@ -1,40 +1,48 @@
-<!--
-	Rosa Tung
-	CS 340
-	Final Project
-	regions.php
--->
-
 <?php
-	ini_set('display_errors', 'On'); //Turn on error reporting
-	//Connect to the database
+	ini_set('display_errors', 'On');//Turn on error reporting
+	//Connects to the database
 	$mysqli = new mysqli("oniddb.cws.oregonstate.edu","tungr-db","6cBDKtK64QENNcPP","tungr-db");
 	if($mysqli->connect_errno){
 		echo "Connection error " . $mysqli->connect_errno . " " . $mysqli->connect_error;
-	}
+		}
 ?>
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>LOLGENDS</title>
+    <head>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<legend class="topLabel"> Regions </legend> <br>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
-		<div> <!--GENERAL CHAMPION INFORMATION-->
+		<div> <!--add champion-->
+		<?php
+		if(!($stmt = $mysqli->prepare("INSERT INTO lol_races(name) VALUES (?)"))){
+			echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+		}
+		//bind parameters
+		if(!($stmt->bind_param("s", $_POST['raceName']))){
+			echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+		}
+		if(!$stmt->execute()){
+			echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+		} else {
+			echo "Added '" . $_POST['raceName'] . "' to the list of races.";
+		}
+		//save region name
+		//$raceName = $_POST['raceName']; //echo $champName;
+		?>
+		</div>
+		<div> <!--RACES TABLE-->
 			<table>
 				<thead>
 					<tr>
-						<th> Regions in the Database </th>
+						<th> Races in the Database </th>
 					</tr>
 				</thead>
 				<?php				
-					if(!($stmt = $mysqli->prepare(	"SELECT	lol_regions.name
-													From lol_regions
-													WHERE lol_regions.name != ' '"
+					if(!($stmt = $mysqli->prepare(	"SELECT	lol_races.name
+													From lol_races"
 													))){
 						echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 					}
@@ -50,6 +58,6 @@
 					$stmt->close();
 				?>
 			</table>
-		</div>
+		</div>	
 	</body>
 </html>
