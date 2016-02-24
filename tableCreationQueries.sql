@@ -31,9 +31,7 @@ CREATE TABLE lol_regions (
 CREATE TABLE lol_factions ( 
 	faction_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(225) NOT NULL,
-	region_id INT UNSIGNED,
 	CONSTRAINT `faction_name` UNIQUE (name),
-	CONSTRAINT `is_static` FOREIGN KEY (region_id) REFERENCES lol_regions(region_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	PRIMARY KEY(faction_id)
 )ENGINE = InnoDB;
 
@@ -138,10 +136,8 @@ INSERT INTO lol_regions(name) VALUES
  insert factions
  INSERT INTO lol_factions([name], [region_id]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
-INSERT INTO lol_factions(name, region_id) VALUES
-("Bandle City", (SELECT region_id FROM lol_regions WHERE name = "Ruddynip Valley")), ("Bilgewater", (SELECT region_id FROM lol_regions WHERE name = "Blue Flame Islands")), ("Demacia", NULL), ("Freljord", NULL), 
-("Ionia", NULL), ("Mount Targon", (SELECT region_id FROM lol_regions WHERE name = "Mount Targon")), ("Noxus", NULL), ("Piltover", NULL), ("Shadow Isles", NULL), 
-("Shurima", (SELECT region_id FROM lol_regions WHERE name = "Shurima Desert")), ("Zaun", NULL), ("Independent", NULL), ("Kinkou Order", NULL); 
+INSERT INTO lol_factions(name) VALUES
+("Bandle City"), ("Bilgewater"), ("Demacia"), ("Freljord"), ("Ionia"), ("Mount Targon"), ("Noxus"), ("Piltover"), ("Shadow Isles"), ("Shurima"), ("Zaun"), ("Independent"), ("Kinkou Order"); 
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert races
@@ -199,7 +195,7 @@ INSERT INTO lol_championFactions(champion_id, faction_id) VALUES
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert champion relationships
- INSERT INTO lol_championRelationships([champion_id], [champion_id2], [related], [romantic], [ally], [rival]) VALUES /*true 1*/
+ INSERT INTO lol_championRelationships([champion_id], [champion_id2], [related], [romantic], [ally], [rival]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_championRelationships(champion_id, champion_id2, related, romantic, ally, rival) VALUES /*true 1*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Aatrox"), (SELECT champion_id FROM lol_champions WHERE name = "Tahm Kench"), "N", "N", "Y", "N"), /*FRIENDS*/
