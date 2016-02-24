@@ -129,7 +129,7 @@ CREATE TABLE lol_championRelationships (
  INSERT INTO lol_regions([name]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_regions(name) VALUES
-("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), ("Shurima Desert"), 
+(NULL), ("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), ("Shurima Desert"), 
 ("The Great Barrier"), ("Voodoo Lands"), ("Conqueror's Sea"), ("Guardian's Sea"), ("The Glad"), ("The Void"), ("Sablestone Mountain Range"), ("Ruddynip Valley");
 
 /* * * * * * * * * * * * * * * * * * * * * * 
@@ -137,7 +137,7 @@ INSERT INTO lol_regions(name) VALUES
  INSERT INTO lol_factions([name], [region_id]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_factions(name) VALUES
-("Bandle City"), ("Bilgewater"), ("Demacia"), ("Freljord"), ("Ionia"), ("Mount Targon"), ("Noxus"), ("Piltover"), ("Shadow Isles"), ("Shurima"), ("Zaun"), ("Independent"), ("Kinkou Order"); 
+(NULL), ("Bandle City"), ("Bilgewater"), ("Demacia"), ("Freljord"), ("Ionia"), ("Mount Targon"), ("Noxus"), ("Piltover"), ("Shadow Isles"), ("Shurima"), ("Zaun"), ("Independent"), ("Kinkou Order"); 
 
 /* * * * * * * * * * * * * * * * * * * * * * 
  insert races

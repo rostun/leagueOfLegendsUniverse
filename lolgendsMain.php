@@ -60,10 +60,12 @@
 						</fieldset>
 						<fieldset>
 							<legend>Origin</legend>
-							Birth Nation/Faction <select name="bNation">
-								<?php
+							Birth Nation/Faction <select name="bFaction">
+								<?php 
 									if(!($stmt = $mysqli->prepare(	"SELECT lol_factions.faction_id, lol_factions.name 
-																	FROM lol_factions"
+																	FROM lol_factions
+																	ORDER BY CASE lol_factions.name
+																	WHEN ' ' THEN 1 ELSE 2 END"
 																	))){
 										echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 									}
@@ -83,7 +85,9 @@
 							&nbsp Birth Region <select name="bRegion">
 								<?php
 									if(!($stmt = $mysqli->prepare(	"SELECT lol_regions.region_id, lol_regions.name 
-																	FROM lol_regions"
+																	FROM lol_regions
+																	ORDER BY CASE lol_regions.name
+																	WHEN ' ' THEN 1 ELSE 2 END"
 																	))){
 											echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 									}

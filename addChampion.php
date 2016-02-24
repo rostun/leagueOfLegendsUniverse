@@ -14,12 +14,26 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<div>
+		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
+		<div> <!--add champion-->
 		<?php
 		if(!($stmt = $mysqli->prepare("INSERT INTO lol_champions(name, gender, race_id, birth_faction_id, birth_region_id, releaseDate) VALUES  (?,?,?,?,?,?)"))){
 			echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 		}
-		if(!($stmt->bind_param("ssiiis",$_POST['champName'],$_POST['gender'],$_POST['Race'],$_POST['bFaction'],$_POST['bRegion'],$_POST['releaseDate']))){
+		//undefined index fix
+		if(isset($_POST['add'])){
+			$bFaction = $_POST['bFaction']; //echo $bFaction;
+			$bRegion = $_POST['bRegion']; //echo $bRegion;
+		}
+		//see if we got a null value
+		if($bFaction == 1){
+			$bFaction = NULL; echo "bFaction: empty string|"; 
+		}
+		if($_POST['bRegion'] == 1){
+			$bRegion = NULL; echo "bRegion: empty string|";
+		}
+		//bind parameters
+		if(!($stmt->bind_param("ssiiis",$_POST['champName'],$_POST['gender'],$_POST['Race'], $bFaction, $bRegion, $_POST['releaseDate']))){
 			echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 		}
 		if(!$stmt->execute()){
@@ -27,10 +41,11 @@
 		} else {
 			echo "Added " . $stmt->affected_rows . " rows to lol_champions.";
 		}
+		//save champion name
+		$champName = $_POST['champName']; //echo $champName;
 		?>
 		</div>
-		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div>
-		<div> <!--GENERAL CHAMPION INFORMATION-->
+		<div> <!--display champion just added-->
 			<label >lol_champions</label>
 			<table>
 				<thead>
@@ -53,6 +68,7 @@
 													LEFT JOIN lol_races ON lol_champions.race_id = lol_races.race_id
 													LEFT JOIN lol_factions ON lol_champions.birth_faction_id = lol_factions.faction_id
 													lEFT JOIN lol_regions ON lol_champions.birth_region_id = lol_regions.region_id
+													WHERE lol_champions.name = '$champName'
 													ORDER BY lol_champions.name ASC"
 													))){
 						echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
