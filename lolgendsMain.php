@@ -22,10 +22,8 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<legend class="topLabel"> Explore the Lolgends Universe</legend>
-		<div> <!--LOOK UP CHAMPION-->
-			<label >Look Up Champion</label>
-		</div>
+		<legend class="topLabel"> Explore the Lolgends Universe</legend> <br>
+		<div class="button"><a href="champions.php">See Champion List</a></div> <br> <!--go to general table-->
 		<div> <!--ADD CHAMPION-->
 			<form method="post" action="addChampion.php"> 
 				<fieldset> <legend>Add Champion</legend>
@@ -112,46 +110,17 @@
 						&nbsp <input type="submit" name="add" value="Add Champion" />
 				</fieldset>
 			</form>
-		</div>
-		<div> <!--GENERAL CHAMPION INFORMATION-->
-			<label >General Champion Information</label>
-			<table>
-				<thead>
-					<tr>
-						<th> Champion </th>
-						<th> Gender </th>
-						<th> Race </th>
-						<th> Origin (Nation/Faction, Region) </th>
-						<th> Date Released </th>
-					</tr>
-				</thead>
-				<?php				
-					if(!($stmt = $mysqli->prepare(	"SELECT	lol_champions.name,
-															lol_champions.gender,
-															lol_races.name,
-															IFNULL(lol_factions.name, 'n/a'),
-															IFNULL(lol_regions.name, 'n/a'),
-															lol_champions.releaseDate
-													FROM lol_champions
-													LEFT JOIN lol_races ON lol_champions.race_id = lol_races.race_id
-													LEFT JOIN lol_factions ON lol_champions.birth_faction_id = lol_factions.faction_id
-													lEFT JOIN lol_regions ON lol_champions.birth_region_id = lol_regions.region_id
-													ORDER BY lol_champions.name ASC"
-													))){
-						echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-					}
-					if(!$stmt->execute()){
-						echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-					}
-					if(!$stmt->bind_result($Cname, $gender, $Rname, $Fname, $Rename, $releaseDate)){
-						echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
-					}
-					while($stmt->fetch()){
-						echo "<tr>\n<td>\n" . $Cname . "\n</td>\n<td>\n" . $gender . "\n</td>\n<td>\n" . $Rname . "\n</td>\n<td>" . $Fname . ", " . $Rename . "\n</td>\n<td>" . $releaseDate;
-					}
-					$stmt->close();
-				?>
-			</table>
+		</div> <br>
+		<div class="button"><a href="regions.php">See Region List</a></div> <br> <!--go to regions table-->
+		<div> <!--ADD REGION-->
+			<form method="post" action="addRegion.php"> 
+				<fieldset> <legend>Add Region</legend>
+						<fieldset>
+							<p>Name: <input type="text" name="regionName" /></p>
+						</fieldset>
+						&nbsp <input type="submit" name="add" value="Add Region" />
+				</fieldset>
+			</form>
 		</div>
 	</body>
 </html>
