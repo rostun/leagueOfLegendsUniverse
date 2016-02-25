@@ -118,10 +118,9 @@ CREATE TABLE lol_championRelationships (
 	romantic ENUM('Y', 'N') NOT NULL, 
 	ally ENUM('Y', 'N') NOT NULL,
 	rival ENUM('Y', 'N') NOT NULL,
-	CONSTRAINT `two_way` UNIQUE (champion_id, champion_id2),
 	FOREIGN KEY (champion_id) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY (champion_id2) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-	PRIMARY KEY (champion_id, champion_id2)
+	CONSTRAINT PRIMARY KEY (champion_id, champion_id2)
 )ENGINE = InnoDB;
 
 /* * * * * * * * * * * * * * * * * * * * * * 

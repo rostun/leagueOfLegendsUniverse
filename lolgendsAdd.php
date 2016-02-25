@@ -2,7 +2,7 @@
 	Rosa Tung
 	CS 340
 	Final Project
-	lolgendsMain.php
+	lolgendsAdd.php
 -->
 
 <?php
@@ -290,6 +290,67 @@
 							</select>
 						</fieldset>
 						&nbsp <input type="submit" name="add" value="Set Champion Allegiance" />
+				</fieldset>
+			</form>
+		</div> <br>
+		<div class="button"><a href="champRelationships.php">See Champion Relationships</a></div> <br> <!--go to general table-->
+		<div> <!--ADD CHAMPION RELATIONSHIP-->
+			<form method="post" action="setChampRelationships.php"> 
+				<fieldset> <legend>Add Relationship</legend>
+						<fieldset> <legend>First Champion</legend>
+							<select name="champ1">
+								<?php
+									if(!($stmt = $mysqli->prepare(	"SELECT lol_champions.champion_id, lol_champions.name 
+																	FROM lol_champions"
+																	))){
+										echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+									}
+
+									if(!$stmt->execute()){
+										echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+									}
+									if(!$stmt->bind_result($id, $pname)){
+										echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+									}
+									while($stmt->fetch()){
+									 echo '<option value=" '. $id . ' "> ' . $pname . '</option>\n';
+									}
+									$stmt->close();
+								?>
+							</select>							
+						&nbsp <legend>Second Champion</legend>
+							<select name="champ2">
+								<?php
+									if(!($stmt = $mysqli->prepare(	"SELECT lol_champions.champion_id, lol_champions.name 
+																	FROM lol_champions"
+																	))){
+										echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+									}
+
+									if(!$stmt->execute()){
+										echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+									}
+									if(!$stmt->bind_result($id, $pname)){
+										echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
+									}
+									while($stmt->fetch()){
+									 echo '<option value=" '. $id . ' "> ' . $pname . '</option>\n';
+									}
+									$stmt->close();
+								?>
+							</select>						
+						</fieldset>
+						<fieldset> <legend>Relationships</legend>	
+							Related? 	<input type="radio" name="related" value="Y" checked> Yes 
+										<input type="radio" name="related" value="N" checked> No <br>
+							Romantic? 	<input type="radio" name="romantic" value="Y" checked> Yes 
+										<input type="radio" name="romantic" value="N" checked> No <br>
+							Allies? 	<input type="radio" name="allies" value="Y" checked> Yes 
+										<input type="radio" name="allies" value="N" checked> No <br>
+							Rivals? 	<input type="radio" name="rivals" value="Y" checked> Yes 
+										<input type="radio" name="rivals" value="N" checked> No 
+										</fieldset>
+						&nbsp <input type="submit" name="add" value="Add Relationship" />
 				</fieldset>
 			</form>
 		</div> <br>

@@ -32,11 +32,13 @@
 				<div class="button"><a href="aliases.php">See Champion Aliases</a></div> <br> <!--go to general table-->
 				<div class="button"><a href="champOccupations.php">See Champion Occupations</a></div> <br> <!--go to general table-->
 				<div class="button"><a href="champAllegiances.php">See Champion Allegiances</a></div> <br> <!--go to general table-->
+				<div class="button"><a href="champRelationships.php">See Champion Relationships</a></div> <br> <!--go to general table-->
+			<label> Search </label> <br>
 			<label> Contribute </label> <br>
 				<div class="button"><a href="lolgendsAdd.php">Add to the Database</a></div> <br> <!--go back to add page-->
-			<label> Update </label> <br>
+			<label> Update (coming soon) </label> <br>
 				<div class="button"><a href="lolgendsUpdate.php">Alter the Database</a></div> <br> <!--go back to add page-->
-			<label> Prune </label> <br>
+			<label> Prune (coming son) </label> <br>
 				<div class="button"><a href="lolgendsDelete.php">Delete from the Database</a></div> <br> <!--go back to add page-->
 	</body>
 </html>
