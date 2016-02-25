@@ -13,18 +13,18 @@ body {
     font-size: 16px;
     line-height: 1.5em;
     color: #454497;
-    background-color: #ffffff;
+    background-color: #FDEEF4;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
 .topLabel{
-    color: #238487;
+    color: #FAAFBA;
     font-weight: bold;
     font-size: 200%
 }
 
 label {
-    color: #238487;
+    color: #FAAFBA;
     font-weight: bold;
     font-size: 18px;
 }
@@ -33,4 +33,14 @@ table, th, td {
 	border: 1px solid black;
 	table-layout: fixed;
 	padding: 2px;
+	background-color: #F4F2F5;
+}
+
+input[type=submit] {
+	margin-top: 10px;
+    border: 1px solid #238487;
+    color: #fff;
+    background:  #238487;
+    padding: 5px 10px;
+    border-radius: 3px;    
 }
