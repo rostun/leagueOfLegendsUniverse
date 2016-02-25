@@ -22,7 +22,6 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		
 		<legend class="topLabel"> Add Things to the Database </legend> <br><br>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br><br> <!--go back to homescreen-->
 		<div class="button"><a href="champions.php">See Champion List</a></div> <br> <!--go to general table-->

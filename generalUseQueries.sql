@@ -50,7 +50,7 @@ ORDER BY lol_aliases.alias ASC;
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 SELECT 	lol_factions.name AS "Faction",
-		IFNULL(lol_championFactions.champion_id, "0") AS "Number of Champions"
+		COUNT(IFNULL(lol_championFactions.champion_id, "0")) AS "Number of Champions"
 FROM lol_factions
 LEFT JOIN lol_championFactions ON lol_factions.faction_id = lol_championFactions.faction_id
 GROUP BY lol_factions.name

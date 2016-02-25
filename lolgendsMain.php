@@ -22,7 +22,11 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<legend class="topLabel"> Explore the Lolgends Lore Universe</legend> <br>
+		<legend class="topLabel"> The Lolgends Lore Universe</legend> <br>
+			<label> Search </label> <br>
+				<div class="button"><a href="lolgendsSearch.php">Available Queries</a></div> <br> <!--go back to add page-->
+			<label> Contribute </label> <br>
+				<div class="button"><a href="lolgendsAdd.php">Add to the Database</a></div> <br> <!--go back to add page-->
 			<label> Explore </label> <br>
 				<div class="button"><a href="champions.php">See Champion List</a></div> <br> <!--go to general table-->
 				<div class="button"><a href="regions.php">See Region List</a></div> <br> <!--go to regions table-->
@@ -33,13 +37,6 @@
 				<div class="button"><a href="champOccupations.php">See Champion Occupations</a></div> <br> <!--go to general table-->
 				<div class="button"><a href="champAllegiances.php">See Champion Allegiances</a></div> <br> <!--go to general table-->
 				<div class="button"><a href="champRelationships.php">See Champion Relationships</a></div> <br> <!--go to general table-->
-			<label> Search </label> <br>
-			<label> Contribute </label> <br>
-				<div class="button"><a href="lolgendsAdd.php">Add to the Database</a></div> <br> <!--go back to add page-->
-			<label> Update (coming soon) </label> <br>
-				<div class="button"><a href="lolgendsUpdate.php">Alter the Database</a></div> <br> <!--go back to add page-->
-			<label> Prune (coming son) </label> <br>
-				<div class="button"><a href="lolgendsDelete.php">Delete from the Database</a></div> <br> <!--go back to add page-->
 	</body>
 </html>
 
