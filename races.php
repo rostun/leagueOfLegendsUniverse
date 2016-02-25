@@ -24,6 +24,7 @@
 	<body>
 		<legend class="topLabel"> Races </legend> <br>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
+		<div class="button"><a href="lolgendsAdd.php">Add Something to the Database</a></div> <br> <!--go back to add page-->
 		<div> <!--RACES TABLE-->
 			<table>
 				<thead>

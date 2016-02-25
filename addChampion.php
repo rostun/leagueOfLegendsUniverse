@@ -15,6 +15,7 @@
 	</head>
 	<body>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
+		<div class="button"><a href="lolgendsAdd.php">Add Something Else</a></div> <br> <!--go back to add page-->
 		<div> <!--add champion-->
 		<?php
 		if(!($stmt = $mysqli->prepare("INSERT INTO lol_champions(name, gender, race_id, birth_faction_id, birth_region_id, releaseDate) VALUES  (?,?,?,?,?,?)"))){

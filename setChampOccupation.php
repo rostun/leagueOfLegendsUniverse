@@ -16,45 +16,53 @@
 	<body>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something Else</a></div> <br> <!--go back to add page-->
-		<div> <!--add champion-->
+		<div> <!--add alias-->
 		<?php
-		if(!($stmt = $mysqli->prepare("INSERT INTO lol_regions(name) VALUES (?)"))){
+		if(!($stmt = $mysqli->prepare("INSERT INTO lol_championOccupations(champion_id, occupation_id) VALUES  (?,?)"))){
 			echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 		}
 		//bind parameters
-		if(!($stmt->bind_param("s", $_POST['regionName']))){
+		if(isset($_POST['add'])){
+			$champID = $_POST['champ']; //echo $bFaction;
+			$jobID = $_POST['occupation']; //echo $bRegion;
+		}
+		if(!($stmt->bind_param("ii", $champID, $jobID))){
 			echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 		}
 		if(!$stmt->execute()){
 			echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
 		} else {
-			echo "Added '" . $_POST['regionName'] . "' to the list of regions.";
+			echo "Added occupation to champions list of occupations.";
 		}
-		//save region name
-		//$regionName = $_POST['regionName']; //echo $champName;
+		//save champion name
+		$champID = $_POST['champ']; //echo $champName;
 		?>
 		</div>
 		<div> <!--display champion just added-->
 			<table>
 				<thead>
 					<tr>
-						<th> Regions in the Database </th>
+						<th> </th>
+						<th> Champions Current Occupations </th>
 					</tr>
 				</thead>
 				<?php				
-					if(!($stmt = $mysqli->prepare(	"SELECT	lol_regions.name
-													FROM lol_regions"
+					if(!($stmt = $mysqli->prepare(	"SELECT 	lol_champions.name, lol_occupations.title
+													FROM lol_champions
+													INNER JOIN lol_championOccupations ON lol_champions.champion_id = lol_championOccupations.champion_id
+													INNER JOIN lol_occupations ON lol_championOccupations.occupation_id = lol_occupations.occupation_id 
+													WHERE lol_champions.champion_id = $champID"
 													))){
 						echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 					}
 					if(!$stmt->execute()){
 						echo "Execute failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 					}
-					if(!$stmt->bind_result($Cname)){
+					if(!$stmt->bind_result($name, $occupation)){
 						echo "Bind failed: "  . $mysqli->connect_errno . " " . $mysqli->connect_error;
 					}
 					while($stmt->fetch()){
-						echo "<tr>\n<td>\n" . $Cname;
+						echo "<tr>\n<td>\n" . $name ."\n</td>\n<td>\n" . $occupation;
 					}
 					$stmt->close();
 				?>
