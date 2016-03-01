@@ -56,9 +56,9 @@
 				?>
 			</table> 
 		</div> <br>
-		<div> <!--champions organized by faction-->		
+		<div> <!--champions organized by race-->		
 			<table>
-			<label> Champions in Factions </label>
+			<label> Champions organized by Race </label>
 				<thead>
 					<tr>
 						<th> Champion </th>
