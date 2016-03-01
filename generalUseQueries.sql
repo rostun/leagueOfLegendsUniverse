@@ -4,7 +4,7 @@
   General Use Queries
  * * * * * * * * * * */
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+/* * * * * * * * * * * * * * * * * * * *
  view tables
  * * * * * * * * * * * * * * * * * * * */
 SELECT * FROM lol_championRelationships;
@@ -19,8 +19,7 @@ SELECT * FROM lol_regions;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Champion Details
-	names, genders, races, origin, and
-	release dates
+	names, genders, races, origin, and release dates
  order by alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 SELECT 	lol_champions.name AS "Champion",
@@ -42,7 +41,7 @@ SELECT 	lol_champions.name AS "Champion",
 		lol_aliases.alias AS "Alias"
 FROM lol_champions
 INNER JOIN lol_aliases ON lol_aliases.champion_id = lol_champions.champion_id
-WHERE lol_champions.name = "Jhin" /*champion name*/
+WHERE lol_champions.name = "Jhin" /* WHERE lol_champions.name = "[champion name]" */
 ORDER BY lol_aliases.alias ASC;
  
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -60,13 +59,13 @@ ORDER BY lol_factions.name ASC;
  Display Champions that have the same particular Occupation
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-SELECT 	lol_champions.name AS "Champions in the Kinkou Order", /*occupation*/
+SELECT 	lol_champions.name AS "Champions in the Kinkou Order", /* SELECT lol_champions.name AS "[description]" */
 		lol_occupations.title AS "Occupation Title"
 FROM lol_champions
 INNER JOIN lol_championOccupations ON lol_champions.champion_id = lol_championOccupations.champion_id
 INNER JOIN lol_occupations ON lol_championOccupations.occupation_id = lol_occupations.occupation_id 
 WHERE lol_occupations.title
-LIKE "%Kinkou%" /*occupation or any text*/
+LIKE "%Kinkou%" /* LIKE "%[any text you want to search]%" */
 ORDER BY lol_champions.name ASC;
  
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -95,7 +94,7 @@ ORDER BY releaseDate ASC;
  Display relationships of a Champion
  order by: alphabetical order
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-SELECT 	D.name AS "Relationships involving Kennen",
+SELECT 	D.name AS "Relationships involving Kennen", /* D.name AS "[description]" */
 		B.related,
 		B.romantic,
 		B.ally,
@@ -104,8 +103,8 @@ FROM lol_champions A
 INNER JOIN lol_championRelationships B ON A.champion_id = B.champion_id
 INNER JOIN lol_champions C ON B.champion_id2 = C.champion_id
 INNER JOIN lol_champions D
-WHERE A.name = "Kennen" AND C.name != "Kennen" AND D.name = C.name
-OR A.name != "Kennen" AND C.name = "Kennen" AND D.name = A.name;
+WHERE A.name = "Kennen" AND C.name != "Kennen" AND D.name = C.name /* WHERE A.name = "[name]" AND C.name != "[name]" AND D.name = C.name */
+OR A.name != "Kennen" AND C.name = "Kennen" AND D.name = A.name; /* OR A.name != "[name]" AND C.name = "[name]" AND D.name = A.name */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  Display Champions in Romantic Relationships
