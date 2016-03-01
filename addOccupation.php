@@ -1,3 +1,9 @@
+<!--
+	Rosa Tung
+	2.29.16
+	add occupation
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
@@ -16,23 +22,23 @@
 	<body>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something Else</a></div> <br> <!--go back to add page-->
-		<div> <!--add an occupation->
-		<?php
-		if(!($stmt = $mysqli->prepare("INSERT INTO lol_occupations(title) VALUES (?)"))){
-			echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		//bind parameters
-		if(!($stmt->bind_param("s", $_POST['jobTitle']))){
-			echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		if(!$stmt->execute()){
-			echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
-		} else {
-			echo "Added '" . $_POST['jobTitle'] . "' to the list of occupations.";
-		}
-		?>
+		<div> <!--add occupation-->
+			<?php
+			if(!($stmt = $mysqli->prepare("INSERT INTO lol_occupations(title) VALUES (?)"))){
+				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			//bind parameters
+			if(!($stmt->bind_param("s", $_POST['jobTitle']))){
+				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			if(!$stmt->execute()){
+				echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+			} else {
+				echo "Added '" . $_POST['jobTitle'] . "' to the list of occupations.";
+			}
+			?>
 		</div>
-		<div> <!--display occupations-->
+		<div> <!--display current occupations in the database-->
 			<table>
 				<thead>
 					<tr>

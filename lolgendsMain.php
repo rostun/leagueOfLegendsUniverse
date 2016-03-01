@@ -1,8 +1,6 @@
 <!--
 	Rosa Tung
-	CS 340
-	Final Project
-	lolgendsMain.php
+	Main Page
 -->
 
 <?php

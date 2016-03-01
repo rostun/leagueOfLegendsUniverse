@@ -1,3 +1,9 @@
+<!--
+	Rosa Tung
+	2.29.16
+	add faction
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
@@ -16,25 +22,23 @@
 	<body>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something Else</a></div> <br> <!--go back to add page-->
-		<div> <!--add champion-->
-		<?php
-		if(!($stmt = $mysqli->prepare("INSERT INTO lol_factions(name) VALUES (?)"))){
-			echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		//bind parameters
-		if(!($stmt->bind_param("s", $_POST['factionName']))){
-			echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		if(!$stmt->execute()){
-			echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
-		} else {
-			echo "Added '" . $_POST['factionName'] . "' to the list of factions.";
-		}
-		//save region name
-		//$factionName = $_POST['factionName']; //echo $champName;
-		?>
+		<div> <!--add faction-->
+			<?php
+			if(!($stmt = $mysqli->prepare("INSERT INTO lol_factions(name) VALUES (?)"))){
+				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			//bind parameters
+			if(!($stmt->bind_param("s", $_POST['factionName']))){
+				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			if(!$stmt->execute()){
+				echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+			} else {
+				echo "Added '" . $_POST['factionName'] . "' to the list of factions.";
+			}
+			?>
 		</div>
-		<div> <!--FACTION TABLE-->
+		<div> <!--display current factions in the database-->
 			<table>
 				<thead>
 					<tr>

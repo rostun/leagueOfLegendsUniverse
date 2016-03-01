@@ -1,3 +1,8 @@
+<!--
+	Rosa Tung
+	search for champions that are in romantic relationships
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
@@ -17,9 +22,9 @@
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsSearch.php">Search Something Else</a></div> <br> <!--go back to add page-->	
 		<div class="button"><a href="lolgendsAdd.php">Add Something to the Database</a></div> <br> <!--go back to add page-->
-		<legend class="topLabel"> Champion-Faction Details </legend> <br>
-		<div> <!--champion per faction-->		
-			<label> Champions that are Related </label> <br>
+		<legend class="topLabel"> Champion Relations </legend> <br>
+		<div> <!--champions in romantic relationships list -->		
+			<label> Champions that wuv each other </label> <br>
 				<?php				
 					if(!($stmt = $mysqli->prepare(	"SELECT CONCAT(A.name, ' and ', C.name)
 													FROM lol_champions A

@@ -1,8 +1,6 @@
 <!--
 	Rosa Tung
-	CS 340
-	Final Project
-	champions.php
+	champions
 -->
 
 <?php
@@ -25,7 +23,7 @@
 		<legend class="topLabel"> General Champion List</legend> <br>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something to the Database</a></div> <br> <!--go back to add page-->
-		<div> <!--GENERAL CHAMPION INFORMATION-->
+		<div> <!--GENERAL CHAMPION INFORMATION TABLE-->
 			<table>
 				<thead>
 					<tr>

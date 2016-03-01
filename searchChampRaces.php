@@ -1,3 +1,9 @@
+<!--
+	Rosa Tung
+	search champions per race distribution
+-->
+
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
@@ -17,8 +23,8 @@
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsSearch.php">Search Something Else</a></div> <br> <!--go back to add page-->	
 		<div class="button"><a href="lolgendsAdd.php">Add Something to the Database</a></div> <br> <!--go back to add page-->
-		<legend class="topLabel"> Champion-Faction Details </legend> <br>
-		<div> <!--champion per faction-->		
+		<legend class="topLabel"> Champion-Race Details </legend> <br>
+		<div> <!--champion per race-->		
 			<table>
 			<label> Champions Per Race Distribution </label>
 				<thead>

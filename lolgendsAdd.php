@@ -1,8 +1,7 @@
 <!--
 	Rosa Tung
 	CS 340
-	Final Project
-	lolgendsAdd.php
+	add things to the database
 -->
 
 <?php

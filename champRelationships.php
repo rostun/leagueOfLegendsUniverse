@@ -1,8 +1,6 @@
 <!--
 	Rosa Tung
-	CS 340
-	Final Project
-	regions.php
+	champion relationships
 -->
 
 <?php
@@ -22,10 +20,10 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<legend class="topLabel"> Champion Allegiances </legend> <br>
+		<legend class="topLabel"> Champion Relationships </legend> <br>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something to the Database</a></div> <br> <!--go back to add page-->
-		<div> <!--aliases-->
+		<div> <!--champion relationships table-->
 			<table>
 				<thead>
 					<tr>

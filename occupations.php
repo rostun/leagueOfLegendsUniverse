@@ -1,8 +1,6 @@
 <!--
 	Rosa Tung
-	CS 340
-	Final Project
-	regions.php
+	occupations
 -->
 
 <?php
@@ -22,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
-		<legend class="topLabel"> Regions </legend> <br>
+		<legend class="topLabel"> Occupations </legend> <br>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something to the Database</a></div> <br> <!--go back to add page-->
 		<div> <!--OCCUPATIONS-->

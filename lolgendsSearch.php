@@ -1,8 +1,6 @@
 <!--
 	Rosa Tung
-	CS 340
-	Final Project
-	lolgendsAdd.php
+	get information from the database
 -->
 
 <?php
@@ -26,13 +24,13 @@
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br><br> <!--go back to homescreen-->
 		<div><label>Champion Demographics</label></div>
 			<div class="button"><a href="searchChampFactions.php">Champion-Faction Details</a></div> <br> <!--champ tally per faction, champions grouped by factions-->
-			<div class="button"><a href="searchChampRaces.php">Champion-Race Details</a></div> <br> <!--champ tally per faction, champions grouped by factions-->
+			<div class="button"><a href="searchChampRaces.php">Champion-Race Details</a></div> <br> <!--champ tally per race, champions grouped by race-->
 		<div><label>Champions that are...</label></div>
-			<div class="button"><a href="searchRelated.php">Related</a></div> <br> <!--champ tally per faction, champions grouped by factions-->
-			<div class="button"><a href="searchRomantic.php">Romantically Involved</a></div> <br> <!--champ tally per faction, champions grouped by factions-->	
-			<div class="button"><a href="searchRivals.php">Rivals</a></div> <br> <!--champ tally per faction, champions grouped by factions-->
-			<div class="button"><a href="searchAllies.php">Allies</a></div> <br> <!--champ tally per faction, champions grouped by factions-->		
-			<div class="button"><a href="searchRelatedRivals.php">Related but Rivals</a></div> <br> <!--champ tally per faction, champions grouped by factions-->
+			<div class="button"><a href="searchRelated.php">Related</a></div> <br> <!--champions that are related-->
+			<div class="button"><a href="searchRomantic.php">Romantically Involved</a></div> <br> <!--champions in relationships-->	
+			<div class="button"><a href="searchRivals.php">Rivals</a></div> <br> <!--champions that don't like each other-->
+			<div class="button"><a href="searchAllies.php">Allies</a></div> <br> <!--champions that like each other-->		
+			<div class="button"><a href="searchRelatedRivals.php">Related but Rivals</a></div> <br> <!--champions that are related but don't like each other-->
 		<div><label >General</label></div>
 		<div> <!--Champion Details-->
 			<form method="get" action="searchChampion.php"> 

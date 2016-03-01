@@ -1,3 +1,8 @@
+<!--
+	Rosa Tung
+	search occupations
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
@@ -17,8 +22,8 @@
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsSearch.php">Search Something Else</a></div> <br> <!--go back to add page-->	
 		<div class="button"><a href="lolgendsAdd.php">Add Something to the Database</a></div> <br> <!--go back to add page-->
-		<legend class="topLabel"> Champion-Faction Details </legend> <br>
-		<div> <!--Search Champion-->
+		<legend class="topLabel"> Occupation Details </legend> <br>
+		<div> <!--Search for occupations-->
 		<label> Champions-Occupations that Match Search </label> <br>
 			<table>
 				<thead>

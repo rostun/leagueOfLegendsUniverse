@@ -1,3 +1,9 @@
+<!--
+	Rosa Tung
+	2.29.16
+	add region
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
@@ -16,25 +22,23 @@
 	<body>
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something Else</a></div> <br> <!--go back to add page-->
-		<div> <!--add champion-->
-		<?php
-		if(!($stmt = $mysqli->prepare("INSERT INTO lol_regions(name) VALUES (?)"))){
-			echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		//bind parameters
-		if(!($stmt->bind_param("s", $_POST['regionName']))){
-			echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		if(!$stmt->execute()){
-			echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
-		} else {
-			echo "Added '" . $_POST['regionName'] . "' to the list of regions.";
-		}
-		//save region name
-		//$regionName = $_POST['regionName']; //echo $champName;
-		?>
+		<div> <!--add region-->
+			<?php
+			if(!($stmt = $mysqli->prepare("INSERT INTO lol_regions(name) VALUES (?)"))){
+				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			//bind parameters
+			if(!($stmt->bind_param("s", $_POST['regionName']))){
+				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			if(!$stmt->execute()){
+				echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+			} else {
+				echo "Added '" . $_POST['regionName'] . "' to the list of regions.";
+			}
+			?>
 		</div>
-		<div> <!--display champion just added-->
+		<div> <!--display regions in the database-->
 			<table>
 				<thead>
 					<tr>

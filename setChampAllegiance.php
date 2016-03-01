@@ -1,3 +1,8 @@
+<!--
+	Rosa Tung
+	input champion allegiance
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database

@@ -1,3 +1,9 @@
+<!--
+	Rosa Tung
+	2.29.16
+	add champion
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
@@ -17,36 +23,34 @@
 		<div class="button"><a href="lolgendsMain.php">Return To Main Page</a></div> <br> <!--go back to homescreen-->
 		<div class="button"><a href="lolgendsAdd.php">Add Something Else</a></div> <br> <!--go back to add page-->
 		<div> <!--add champion-->
-		<?php
-		if(!($stmt = $mysqli->prepare("INSERT INTO lol_champions(name, gender, race_id, birth_faction_id, birth_region_id, releaseDate) VALUES  (?,?,?,?,?,?)"))){
-			echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		//undefined index fix
-		if(isset($_POST['add'])){
-			$bFaction = $_POST['bFaction']; //echo $bFaction;
-			$bRegion = $_POST['bRegion']; //echo $bRegion;
-		}
-		//see if we got a null value
-		if($bFaction == 1){
-			$bFaction = NULL; //echo "bFaction: empty string|"; 
-		}
-		if($_POST['bRegion'] == 1){
-			$bRegion = NULL; //echo "bRegion: empty string|";
-		}
-		//bind parameters
-		if(!($stmt->bind_param("ssiiis",$_POST['champName'],$_POST['gender'],$_POST['Race'], $bFaction, $bRegion, $_POST['releaseDate']))){
-			echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
-		}
-		if(!$stmt->execute()){
-			echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
-		} else {
-			echo "Added '" . $_POST['champName'] . "' to the list of champions.";
-		}
-		//save champion name
-		//$champName = $_POST['champName']; //echo $champName;
-		?>
+			<?php
+			if(!($stmt = $mysqli->prepare("INSERT INTO lol_champions(name, gender, race_id, birth_faction_id, birth_region_id, releaseDate) VALUES  (?,?,?,?,?,?)"))){
+				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			//undefined index fix
+			if(isset($_POST['add'])){
+				$bFaction = $_POST['bFaction']; //echo $bFaction;
+				$bRegion = $_POST['bRegion']; //echo $bRegion;
+			}
+			//see if we got a null value, means champion isn't associated with faction/region
+			if($bFaction == 1){
+				$bFaction = NULL; //echo "bFaction: empty string|"; 
+			}
+			if($_POST['bRegion'] == 1){
+				$bRegion = NULL; //echo "bRegion: empty string|";
+			}
+			//bind parameters
+			if(!($stmt->bind_param("ssiiis",$_POST['champName'],$_POST['gender'],$_POST['Race'], $bFaction, $bRegion, $_POST['releaseDate']))){
+				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			if(!$stmt->execute()){
+				echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+			} else {
+				echo "Added '" . $_POST['champName'] . "' to the list of champions.";
+			}
+			?>
 		</div>
-		<div> <!--display champion just added-->
+		<div> <!--display current champions in the database-->
 			<label >Champions in the Database</label>
 			<table>
 				<thead>

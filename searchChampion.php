@@ -1,3 +1,8 @@
+<!--
+	Rosa Tung
+	search for a champion
+-->
+
 <?php
 	ini_set('display_errors', 'On');//Turn on error reporting
 	//Connects to the database
