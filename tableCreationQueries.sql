@@ -69,6 +69,7 @@ CREATE TABLE lol_aliases (
 	alias_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	champion_id INT UNSIGNED NOT NULL,
 	alias text NOT NULL,
+	CONSTRAINT `uniqueAlias` UNIQUE (text),
 	FOREIGN KEY (champion_id) REFERENCES lol_champions(champion_id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	PRIMARY KEY(alias_id)
 )ENGINE = InnoDB;
