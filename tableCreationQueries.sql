@@ -154,8 +154,8 @@ CREATE TABLE lol_championRelationships (
 	INSERT INTO lol_regions([name]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_regions(name) VALUES
-(NULL), ("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), ("Shurima Desert"), 
-("The Great Barrier"), ("Voodoo Lands"), ("Conqueror's Sea"), ("Guardian's Sea"), ("The Glad"), ("The Void"), ("Sablestone Mountain Range"), ("Ruddynip Valley");
+(NULL), ("Blue Flame Islands"), ("Howling Marsh"), ("Ironspike Mountains"), ("Kalamanda"), ("Kumungu"), ("Lokfar"), ("Marshes of Kaladoun"), ("Mount Targon"), ("Plague Jungles"), ("Serpentine River"), 
+("Shurima Desert"), ("The Great Barrier"), ("Voodoo Lands"), ("Conqueror's Sea"), ("Guardian's Sea"), ("The Glad"), ("The Void"), ("Sablestone Mountain Range"), ("Ruddynip Valley"), ("Ancient Runeterra");
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  insert factions
@@ -169,7 +169,7 @@ INSERT INTO lol_factions(name) VALUES
 	INSERT INTO lol_races([name]) VALUES
  * * * * * * * * * * * * * * * * * * * * * */
 INSERT INTO lol_races(name) VALUES
-("Darkin"), ("Gumiho"), ("Human"), ("Yordle"), ("Monkey");
+("Darkin"), ("Gumiho"), ("Human"), ("Yordle"), ("Monkey"), ("River Demon");
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  insert champions
@@ -179,11 +179,11 @@ INSERT INTO lol_champions(name, gender, race_id, birth_faction_id, birth_region_
 ("Aatrox", "M", (SELECT race_id FROM lol_races WHERE name = "Darkin"), NULL, NULL, "2013-06-13"), ("Ahri", "F", (SELECT race_id FROM lol_races WHERE name = "Gumiho"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2011-12-14"), ("Akali", "F", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2010-06-11"), ("Kennen", "M", (SELECT race_id FROM lol_races WHERE name = "Yordle"), (SELECT faction_id FROM lol_factions WHERE name = "Bandle City"), (SELECT region_id FROM lol_regions WHERE name = "Ruddynip Valley"), "2010-04-08"), ("Shen", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2010-03-24"), ("Wukong", "M", (SELECT race_id FROM lol_races WHERE name = "Monkey"), NULL, (SELECT region_id FROM lol_regions WHERE name = "Plague Jungles"), "2011-07-26"), ("Master Yi", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2009-02-21"),
 ("Jhin", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2016-02-01"),
 
-("Tahm Kench", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2016-02-01"),
-("Sona", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2016-02-01"),
-("Tryndamere", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2016-02-01"),
-("Zed", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2016-02-01"),
-("Singed", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2016-02-01");
+("Tahm Kench", "M", (SELECT race_id FROM lol_races WHERE name = "River Demon"), NULL, (SELECT region_id FROM lol_regions WHERE name = "Ancient Runeterra"), "2015-07-09"), /*not complete*/
+("Sona", "F", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Ionia"), NULL, "2010-09-21"), /*not complete*/
+("Tryndamere", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Freljord"), NULL, "2009-05-01"), /*not complete*/
+("Zed", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), NULL, NULL, "2012-11-13"), /*not complete*/
+("Singed", "M", (SELECT race_id FROM lol_races WHERE name = "Human"), (SELECT faction_id FROM lol_factions WHERE name = "Zaun"), NULL, "2009-04-18"); /*not complete*/
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  insert aliases
@@ -238,9 +238,7 @@ INSERT INTO lol_championRelationships(champion_id, champion_id2, related, romant
 ((SELECT champion_id FROM lol_champions WHERE name = "Master Yi"), (SELECT champion_id FROM lol_champions WHERE name = "Singed"), "N", "N", "N", "Y"), /*ENEMIES*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Sona"), "N", "N", "N", "Y"), /*RIVALS*/
 ((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Master Yi"), "N", "N", "N", "Y"), /*RIVALS*/
-((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Zed"), "N", "N", "N", "Y"), /*ENEMIES*/
-
-((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Singed"), "Y", "Y", "N", "Y"); /*ENEMIES*/
+((SELECT champion_id FROM lol_champions WHERE name = "Jhin"), (SELECT champion_id FROM lol_champions WHERE name = "Zed"), "N", "N", "N", "Y"); /*ENEMIES*/
 
 
 
