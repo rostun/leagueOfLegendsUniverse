@@ -22,9 +22,9 @@
 	<body>
 		<legend class="topLabel"> The Lolgends Lore Universe</legend> <br>
 			<label> Search </label> <br>
-				<div class="button"><a href="lolgendsSearch.php">Available Queries</a></div> <br> <!--go back to add page-->
+				<div class="button"><a href="lolgendsSearch.php">Available Queries</a></div> <br> <!--go to search page-->
 			<label> Contribute </label> <br>
-				<div class="button"><a href="lolgendsAdd.php">Add to the Database</a></div> <br> <!--go back to add page-->
+				<div class="button"><a href="lolgendsAdd.php">Add to the Database</a></div> <br> <!--go to add page-->
 			<label> Explore </label> <br>
 				<div class="button"><a href="champions.php">See Champion List</a></div> <br> <!--go to general table-->
 				<div class="button"><a href="regions.php">See Region List</a></div> <br> <!--go to regions table-->
