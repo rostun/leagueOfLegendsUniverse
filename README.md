@@ -2,7 +2,7 @@
 lore database
 Database Outline
 
-A database to keep track of details of the League of Legends lore.
+A database to organize and keep track of League of Legends lore.
 
 1. A Region has an id number and a name. It is uniquely identified by it’s id number. Every Region name is unique.
 2. A Faction has an id number and a name. It is uniquely identified by it’s id number. Every Faction name is unique.
